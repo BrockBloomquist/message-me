@@ -5,3 +5,7 @@ import "@hotwired/turbo-rails"
 import * as jquery from "jquery"
 import "semantic-ui"
 
+$(document).on('turbo:load', function() {
+    console.log('loaded turbo links')
+    $('.ui.dropdown').dropdown()
+});
