@@ -1,4 +1,4 @@
-<div class="ui placeholder segment">
+<div class="ui placeholder segment signup">
   <div class="twelve wide column">
     <%= form_for(:user, class: "ui form") do |form| %>
       <% if user.errors.any? %>
@@ -13,28 +13,28 @@
         </div>
       <% end %>
           <div>
-            <%= form.label :username %>
+            <%= form.label :username, style: "display: flex" %>
             <%= form.text_field :username, placeholder: "Username" %>
           </div>
 
           <div>
-            <%= form.label :password, style: "display: block" %>
+            <%= form.label :password, style: "display: flex" %>
             <%= form.text_field :password, placeholder: "Password" %>
           </div>
 
           <div>
-            <%= form.label :email, style: "display: block" %>
+            <%= form.label :email, style: "display: flex" %>
             <%= form.text_field :email, placeholder: "Email" %>
           </div>
 
-        <div class="fields">
+        <div class="two fields">
           <div class="field">
-            <%= form.label :first_name, style: "display: block" %>
+            <%= form.label :first_name, style: "display: flex" %>
             <%= form.text_field :first_name, placeholder: "First name" %>
           </div>
 
           <div class="field">
-            <%= form.label :last_name, style: "display: block"%>
+            <%= form.label :last_name, style: "display: flex"%>
             <%= form.text_field :last_name,  placeholder: "Last name"  %>
           </div>
         </div>
