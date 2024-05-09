@@ -10,13 +10,13 @@
             <div class="ui dropdown item">
             Account <i class="dropdown icon"></i>
             <div class="menu">
-                <a class="item">Log out</a>
                 <a class="item" href="/login">Log in</a>
                 <a class="item">Sign up</a>
             </div>
             </div>
             <div class="item">
                 <div class="ui orange button"><%= link_to "Sign Up", signup_path, style: "color: white" %></div>
+                <%= button_to "Log out", logout_path, class: "ui orange button", method: :delete %>
             </div>
         </div>
     </div>
