@@ -9,5 +9,7 @@ class User < ApplicationRecord
                     length: { maximum: 105 },
                     format: { with: VALID_EMAIL_REGEX }
     has_many :messages
+    validates :bio, presence: true, 
+                    length: { minimum: 4, maximum: 300 }
     has_secure_password
 end
