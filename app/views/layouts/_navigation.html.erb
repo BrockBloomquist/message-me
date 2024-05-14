@@ -14,8 +14,7 @@
                         <a class="item" href="/signup">Sign up</a>
                         <a class="item" href="/login">Log in</a>
                     <% else %>
-                        <a class="item" href="/"><% link_to "Profile", users_path, class: "item" %></a>
-                       
+                        <%= link_to "Profile", user_path(current_user), class: "item" %>
                     <% end %>
                 </div>
             </div>

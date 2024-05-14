@@ -1,12 +1,7 @@
-<div id="<%= dom_id message %>">
-  <p>
-    <strong>Body:</strong>
-    <%= message.body %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= message.user_id %>
-  </p>
-
+<div class="event">
+  <div class="content">
+      <div class="summary">
+          <em><%= message.user.username %></em>: <%= message.body %>
+      </div>
+  </div>
 </div>
