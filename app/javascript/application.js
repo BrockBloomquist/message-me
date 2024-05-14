@@ -7,10 +7,9 @@ import "semantic-ui"
 
 $(document).on('turbo:load', function() {
     console.log('loaded turbo links')
-    $('.ui.dropdown').dropdown()
-});
-
-$('.message .close')
+  $('.ui.dropdown').dropdown()
+  
+  $('.message .close')
   .on('click', function() {
     $(this)
       .closest('.message')
@@ -18,3 +17,5 @@ $('.message .close')
     ;
   })
 ;
+});
+

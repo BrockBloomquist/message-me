@@ -1,8 +1,8 @@
 <% flash.each do |name, msg| %>
     <div class="ui <%= name == "notice" ? "success" : "negative" %> message">
-    <div class="header">
-        <%= name.upcase %>
-    </div>
-    <p> <%= msg %> </p>
+        <i class="close icon"></i>
+        <div class="header">
+            <%= msg %>
+        </div>
     </div>
 <% end %>

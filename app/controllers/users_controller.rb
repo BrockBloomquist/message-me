@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :require_user, only: %i[edit update]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   # GET /users or /users.json
   def index
@@ -66,5 +68,12 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:username, :password, :email, :first_name, :last_name)
+    end
+
+    def require_same_user
+      return unless current_user != @user && !current_user.admin?
+
+      flash[:alert] = "You can only edit or delete your own account"
+      redirect_to @user
     end
 end
