@@ -1,10 +1,9 @@
-<p style="color: green"><%= notice %></p>
+<h4 class="ui center aligned medium icon header">
+    <i class="circular orange user icon"></i> <%= user.username %>'s Profile
+</h4>
 
 <%= render @user %>
 
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
-
-  <%= button_to "Destroy this user", @user, method: :delete %>
+<div class="ui center aligned medium icon header">
+  <%= link_to "[ Back to users ]", users_path %>
 </div>
