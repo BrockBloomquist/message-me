@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
+  before_action :require_user
 
   # GET /messages or /messages.json
   def index
@@ -11,8 +12,7 @@ class MessagesController < ApplicationController
   end
 
   # GET /messages/new
-  def new
-    @message = Message.new
+  def new;
   end
 
   # GET /messages/1/edit
@@ -21,11 +21,11 @@ class MessagesController < ApplicationController
 
   # POST /messages or /messages.json
   def create
-    @message = Message.new(message_params)
+    @message = current_user.messages.build(message_params)
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to message_url(@message), notice: "Message was successfully created." }
+        format.html { redirect_to root_url(@message), notice: "Message was successfully created." }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new, status: :unprocessable_entity }
