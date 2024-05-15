@@ -15,11 +15,17 @@
           <div class="ui horizontal divider">
             Actions
           </div>
-          <% if current_user.admin? || current_user == @user %>
-            <div class="ui center aligned">
-              <%= link_to "Edit this account", edit_user_path(@user), class: "ui inverted blue button" %>
-              <%= button_to "Delete this account", @user, method: :delete, class: "ui inverted red button" %>
-            </div>
+          <%if logged_in? %>
+            <% if current_user == @user || current_user.admin? %>
+              <div class="ui center aligned">
+                <%= link_to "Edit this account", edit_user_path(@user), class: "ui inverted blue button" %>
+                <%= button_to "Delete this account", @user, method: :delete, class: "ui inverted red button" %>
+              </div>
+            <% else %>
+              <div class="ui header center aligned">Only admins and the current user can perform actions.</div>
+            <% end %>
+          <% else %>
+            <div class="ui header center aligned">You cannot perform any actions because you are not logged in.</div>
           <% end %>
       </div>
   </div>
