@@ -18,7 +18,9 @@
           <%if logged_in? %>
             <% if current_user == @user || current_user.admin? %>
               <div class="ui center aligned">
-                <%= link_to "Edit this account", edit_user_path(@user), class: "ui inverted blue button" %>
+                <%= turbo_frame_tag "edit_user_account_frame" do %>
+                  <%= link_to "Edit this account", edit_user_path(@user), class: "ui inverted blue button" %>
+                <% end %>
                 <%= button_to "Delete this account", @user, method: :delete, class: "ui inverted red button" %>
               </div>
             <% else %>

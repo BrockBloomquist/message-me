@@ -8,7 +8,9 @@
         <div class="ui fluid raised card chatbox">
             <div class="content">
                 <div class="ui feed">
-                    <%= render @messages %>
+                    <%= turbo_frame_tag "new_message" do %>
+                        <%= render @messages %>
+                    <% end %>
                 </div>
             </div>
                 <div class="extra content">
@@ -16,12 +18,12 @@
                         <div class="field">
                             <div class="ui fluid icon input">
                                 <%= f.text_field :body, placeholder: "Enter a message..." %>
-                                <%= f.button '<i class="bordered inverted orange edit icon"></i>'.html_safe %>
+                                <%= f.button '<i class="bordered inverted orange edit icon"></i>'.html_safe, data: { turbo_frame: "data_attribute_frame" } %>
                             </div>
                         </div>
                     <% end %>
                 </div>
-            </div>
+        </div>
     </div>
 
     <div class="four wide column">
