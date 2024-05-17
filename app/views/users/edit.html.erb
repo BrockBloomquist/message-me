@@ -3,6 +3,8 @@
     Edit this account!
 </h4>
 
-<div class="ui two column centered grid">
-<%= render "form", user: @user %>
-</div>
+<%= turbo_frame_tag "data_attribute_frame" do %>
+    <div class="ui two column centered grid">
+        <%= render "form", user: @user %>
+    </div>
+<% end %>

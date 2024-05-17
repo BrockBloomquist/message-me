@@ -1,34 +1,34 @@
-<div class="ui two column grid">
-  <div class="sixteen wide column">
-      <div class="ui fluid raised card chatbox">
-        <div class="content">
-          <div class="ui header center aligned">
-              Username: <em><%= @user.username %></em>
-          </div>
-          <div class="ui header center aligned">
-              Email: <em><%= @user.email %></em>
-          </div>
-          <div class="ui header center aligned">
-              Full name: <em><%= @user.first_name.capitalize %></em> <em><%= @user.last_name.capitalize %></em>
-          </div>
-          <br/>
-          <div class="ui horizontal divider">
-            Actions
-          </div>
-          <%if logged_in? %>
-            <% if current_user == @user || current_user.admin? %>
-              <div class="ui center aligned">
-                <%= turbo_frame_tag "edit_user_account_frame" do %>
-                  <%= link_to "Edit this account", edit_user_path(@user), class: "ui inverted blue button" %>
-                <% end %>
-                <%= button_to "Delete this account", @user, method: :delete, class: "ui inverted red button" %>
-              </div>
+<%= turbo_frame_tag "user" do %>
+  <div class="ui two column grid">
+    <div class="sixteen wide column">
+        <div class="ui fluid  card">
+          <div class="content">
+            <%= turbo_frame_tag "data_attribute_frame" %>
+            <div class="ui header center aligned">
+                Full Name: <em><%= @user.first_name %> <%= @user.last_name%></em>
+            </div>
+            <div class="ui header center aligned">
+              <%= @user.bio %>
+            </div>
+            <br/>
+            <div class="ui horizontal divider">
+              Actions
+            </div>
+            <% if logged_in? %>
+              <% if current_user == @user || current_user.admin? %>
+                <div class="ui center aligned">
+                  <%= turbo_frame_tag "edit_user_account_frame" do %>
+                    <%= link_to "Edit this account", edit_user_path(@user), class: "ui inverted blue button", data: { turbo_frame: "data_attribute_frame" } %>
+                  <% end %>
+                  <%= button_to "Delete this account", @user, method: :delete, class: "ui inverted red button" %>
+                </div>
+              <% else %>
+                <div class="ui header center aligned">Only admins and the current user can perform actions.</div>
+              <% end %>
             <% else %>
-              <div class="ui header center aligned">Only admins and the current user can perform actions.</div>
+              <div class="ui header center aligned">You cannot perform any actions because you are not logged in.</div>
             <% end %>
-          <% else %>
-            <div class="ui header center aligned">You cannot perform any actions because you are not logged in.</div>
-          <% end %>
-      </div>
+        </div>
+    </div>
   </div>
-</div>
+<% end %>
