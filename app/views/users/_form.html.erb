@@ -33,7 +33,7 @@
       
       <br/>
       <div>
-        <%= form.submit "Sign Up", class: "ui orange submit button" %>
+        <%= form.submit(@user.new_record? ? "Sign Up" : "Update Account", class: "ui orange submit button") %>
       </div>
     <% end %>
 </div>

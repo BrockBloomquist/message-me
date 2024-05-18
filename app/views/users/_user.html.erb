@@ -3,13 +3,17 @@
     <div class="sixteen wide column">
         <div class="ui fluid  card">
           <div class="content">
-            <%= turbo_frame_tag "data_attribute_frame" %>
+            <%= turbo_frame_tag "data_attribute_frame" do %>
             <div class="ui header center aligned">
-                Full Name: <em><%= @user.first_name %> <%= @user.last_name%></em>
+                Username: <em><%= @user.username %> <%= @user.last_name %></em>
             </div>
             <div class="ui header center aligned">
-              <%= @user.bio %>
+                Full Name: <em><%= (@user.first_name.capitalize + " " + @user.last_name.capitalize) %></em>
             </div>
+            <div class="ui header center aligned">
+              Bio: <em><%= @user.bio %></em>
+            </div>
+            <% end %>
             <br/>
             <div class="ui horizontal divider">
               Actions
@@ -20,7 +24,7 @@
                   <%= turbo_frame_tag "edit_user_account_frame" do %>
                     <%= link_to "Edit this account", edit_user_path(@user), class: "ui inverted blue button", data: { turbo_frame: "data_attribute_frame" } %>
                   <% end %>
-                  <%= button_to "Delete this account", @user, method: :delete, class: "ui inverted red button" %>
+                  <%= button_to "Delete this account", @user, method: :delete, class: "ui inverted red button", data: {turbo_confirm: "Are you sure you want to delete #{user.username}?" } %>
                 </div>
               <% else %>
                 <div class="ui header center aligned">Only admins and the current user can perform actions.</div>

@@ -9,12 +9,12 @@
             <div class="content">
                 <div class="ui feed">
                     <%= turbo_frame_tag "new_message" do %>
-                        <%= render @messages %>
+                        <%= render 'chats' %>
                     <% end %>
                 </div>
             </div>
                 <div class="extra content">
-                    <%= form_for(:message, class: "ui reply form", url: message_path) do |f| %>
+                    <%= form_for(:message, class: "ui reply form", url: message_path, method: :post) do |f| %>
                         <div class="field">
                             <div class="ui fluid icon input">
                                 <%= f.text_field :body, placeholder: "Enter a message..." %>
