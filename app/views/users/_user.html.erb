@@ -5,7 +5,10 @@
           <div class="content">
             <%= turbo_frame_tag "data_attribute_frame" do %>
             <div class="ui header center aligned">
-                Username: <em><%= @user.username %> <%= @user.last_name %></em>
+                Username: <em><%= @user.username %></em>
+            </div>
+            <div class="ui header center aligned">
+                Email: <em><%= @user.email %></em>
             </div>
             <div class="ui header center aligned">
                 Full Name: <em><%= (@user.first_name.capitalize + " " + @user.last_name.capitalize) %></em>

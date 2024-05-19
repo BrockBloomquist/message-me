@@ -22,10 +22,12 @@ class MessagesController < ApplicationController
   # POST /messages or /messages.json
   def create
     @message = current_user.messages.build(message_params)
+    @messages = Message.all
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to root_url, notice: "Message was successfully sent." }
+        format.html { redirect_to root_url }
+        format.turbo_stream
       else
         format.html { render @message, status: :unprocessable_entity }
         format.json { render json: @message.errors, status: :unprocessable_entity }
