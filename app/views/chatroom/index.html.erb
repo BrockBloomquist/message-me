@@ -3,29 +3,29 @@
     Say Something
 </h4>
 
-<%= turbo_frame_tag "chatroom" do %>
-    <div class="ui two column grid">
-        <div class="twelve wide column">
-            <div class="ui fluid raised card chatbox">
-                <div class="content">
-                    <div class="ui feed">
-                        <%= turbo_frame_tag "new_message" do %>
-                            <%= render @messages %>
-                        <% end %>
-                    </div>
+
+<div class="ui two column grid">
+    <div class="twelve wide column">
+        <div class="ui fluid raised card chatbox">
+            <div class="content">
+                <div class="ui feed">
+                    <%= turbo_frame_tag "chatroom" do %>
+                        <%= render 'chats' %>
+                    <% end %>
                 </div>
-                    <div class="extra content">
-                        <%= form_for(:message, class: "ui reply form", url: message_path, method: :post) do |f| %>
-                            <div class="field">
-                                <div class="ui fluid icon input">
-                                    <%= f.text_field :body, placeholder: "Enter a message..." %>
-                                    <%= f.button '<i class="bordered inverted orange edit icon"></i>'.html_safe, data: { turbo_frame: "new_message" } %>
-                                </div>
-                            </div>
-                        <% end %>
-                    </div>
             </div>
+                <div class="extra content">
+                    <%= form_for(:message, class: "ui reply form", url: message_path, method: :post) do |f| %>
+                        <div class="field">
+                            <div class="ui fluid icon input">
+                                <%= f.text_field :body, placeholder: "Enter a message..." %>
+                                <%= f.button '<i class="bordered inverted orange edit icon"></i>'.html_safe, data: { turbo_frame: "chatroom" } %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
         </div>
+    </div>
 
 
     <div class="four wide column">
@@ -46,4 +46,3 @@
         </div>
     </div>
 </div>
-<% end %>
