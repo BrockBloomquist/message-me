@@ -3,11 +3,12 @@
     Say Something
 </h4>
 
+<%= turbo_stream_from :messages_list %>
 
 <div class="ui two column grid">
     <div class="twelve wide column">
         <div class="ui fluid raised card chatbox">
-            <div class="content">
+            <div class="content" id="chat">
                 <div class="ui feed">
                     <%= turbo_frame_tag "chatroom" do %>
                         <%= render 'chats' %>

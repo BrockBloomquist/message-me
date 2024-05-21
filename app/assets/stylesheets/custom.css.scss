@@ -3,8 +3,13 @@
 
 .chatbox {
     height: 450px;
+    max-height: 450px;
 }
 
 .signup {
     width: 450px;
+}
+
+#chat {
+    overflow-x: scroll;
 }
