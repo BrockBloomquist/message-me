@@ -6,16 +6,27 @@ import * as jquery from "jquery"
 import "semantic-ui"
 
 $(document).on('turbo:load', function() {
-    console.log('loaded turbo links')
+  console.log('loaded turbo links')
   $('.ui.dropdown').dropdown()
+
+
+  // Scrolls to bottom of chat on turbo load
+  if ($('#messages').length > 0) {
+    $('#messages').scrollTop($('#messages')[0].scrollHeight);
+  }
+
+
+  // Added an event listener which listens for a before-fetch turbo response to scroll to the bottom when a new message is sent
+  document.addEventListener("turbo:before-fetch-response", function (e) {
+    $('#messages').scrollTop($('#messages')[0].scrollHeight);
+  })
+
+
   
   $('.message .close')
   .on('click', function() {
     $(this)
       .closest('.message')
-      .transition('fade')
-    ;
-  })
-;
+      .transition('fade');
+  });
 });
-
