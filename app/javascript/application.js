@@ -21,7 +21,12 @@ $(document).on('turbo:load', function() {
     $('#messages').scrollTop($('#messages')[0].scrollHeight);
   })
 
-
+  $('#message_body').on('keydown', (e) => {
+    if (e.key === 'Enter') {
+      $('#btn').trigger('click');
+      e.target.value = ""
+    }
+  })
   
   $('.message .close')
   .on('click', function() {
