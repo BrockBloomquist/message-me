@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get "signup", to: "users#new"
   delete "logout", to: 'sessions#destroy'
   post 'message', to: 'messages#create'
+  get 'friends', to: 'users#friends'
 end
