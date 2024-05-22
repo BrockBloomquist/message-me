@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_14_185653) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_22_175649) do
+  create_table "invitations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "friend_id"
+    t.boolean "confirmed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_invitations_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.integer "user_id"
@@ -30,4 +39,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_185653) do
     t.text "bio"
   end
 
+  add_foreign_key "invitations", "users"
 end
