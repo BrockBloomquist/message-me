@@ -4,16 +4,18 @@
 
 <div id="users" class="ui cards centered align">
   <% @users.each do |user| %>
-    <div class="ui card">
-      <div class="content">
-        <%= link_to user.username, user_path(user), class: "header" %> 
-        <div class="meta">
-          <span class="date">Joined <%= time_ago_in_words(user.created_at) %> ago</span>
+    <% if !current_user.friends_with?(user)%>
+      <div class="ui card">
+        <div class="content">
+          <%= link_to user.username, user_path(user), class: "header" %> 
+          <div class="meta">
+            <span class="date">Joined <%= time_ago_in_words(user.created_at) %> ago</span>
+          </div>
+          <div class="description">
+            <%= user.bio %>
+          </div>
         </div>
-        <div class="description">
-          <%= user.bio %>
-        </div>
-      </div>
+    <% end %>
 </div>
   <% end %>
 </div>

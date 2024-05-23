@@ -4,9 +4,7 @@
             <a class="item" href="/">
                 Home
             </a>
-            <a class="item" href="/friends">
-                Friends
-            </a>
+            <%= link_to "Users", users_path, class: "item" %>
         <% end %>
         <div class="right menu">
             <div class="ui dropdown item">
@@ -17,6 +15,7 @@
                         <a class="item" href="/login">Log in</a>
                     <% else %>
                         <%= link_to "Profile", user_path(current_user), class: "item" %>
+                        <%= link_to "Friends", friends_path, class: "item" %>
                     <% end %>
                 </div>
             </div>

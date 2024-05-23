@@ -22,19 +22,21 @@
               Actions
             </div>
             <% if logged_in? %>
+            <div class="ui center aligned">
+              <%= button_to "Add as a friend", add_friend_path, class: "ui inverted green button", method: :post %>
               <% if current_user == @user || current_user.admin? %>
-                <div class="ui center aligned">
-                  <%= turbo_frame_tag "edit_user_account_frame" do %>
-                    <%= link_to "Edit this account", edit_user_path(@user), class: "ui inverted blue button", data: { turbo_frame: "data_attribute_frame" } %>
-                  <% end %>
-                  <%= button_to "Delete this account", @user, method: :delete, class: "ui inverted red button", data: {turbo_confirm: "Are you sure you want to delete #{user.username}?" } %>
-                </div>
+                <%= turbo_frame_tag "edit_user_account_frame" do %>
+                  <%= link_to "Edit this account", edit_user_path(@user), class: "ui inverted blue button", data: { turbo_frame: "data_attribute_frame" } %>
+                <% end %>
+                <%= button_to "Delete this account", @user, method: :delete, class: "ui inverted red button", data: {turbo_confirm: "Are you sure you want to delete #{user.username}?" } %>
               <% else %>
                 <div class="ui header center aligned">Only admins and the current user can perform actions.</div>
               <% end %>
+
             <% else %>
               <div class="ui header center aligned">You cannot perform any actions because you are not logged in.</div>
             <% end %>
+            </div>
         </div>
     </div>
   </div>

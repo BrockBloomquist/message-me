@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :require_user, only: %i[edit update index show]
+  before_action :require_user, only: %i[edit update index show friends]
   before_action :require_same_user, only: %i[edit update destroy]
 
   # GET /users or /users.json
@@ -58,6 +58,10 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def add_friend(user)
+    current_user.send_invitation(user)
   end
 
   def friends

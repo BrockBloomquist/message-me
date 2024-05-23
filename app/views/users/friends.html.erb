@@ -1,6 +1,23 @@
-<h1>This is a test~!</h1>
-<% if @user.friends.any? %>
-    <h1> <%= @user.friends.count %> </h1>
-<% else %>
-    <h1>No friends</h1>
-<% end %>
+<h1 class="ui center aligned medium icon header">
+    <i class="circular orange user icon"></i> Friends
+</h1>
+
+<div id="users" class="ui cards centered align">
+    <% if @user.friends.any? %>
+        <% @user.friends.each do |friend| %>
+            <div class="ui card">
+                <div class="content">
+                    <%= link_to friend.username, user_path(friend), class: "header" %> 
+                    <div class="meta">
+                    <span class="date">Joined <%= time_ago_in_words(friend.created_at) %> ago</span>
+                    </div>
+                    <div class="description">
+                    <%= friend.bio %>
+                </div>
+            </div>
+        <% end %>
+    <% else %>
+        <h1 class="ui center aligned header">No friends yet!</h1>
+    <% end %>
+    </div>
+</div>
