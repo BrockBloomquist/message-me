@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :require_user, only: %i[edit update index show friends]
+  before_action :require_user, only: %i[edit update index show friends add_friend]
   before_action :require_same_user, only: %i[edit update destroy]
 
   # GET /users or /users.json
@@ -60,8 +60,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def add_friend(user)
-    current_user.send_invitation(user)
+  def add_friend
+    current_user.send_invitation(@user)
   end
 
   def friends

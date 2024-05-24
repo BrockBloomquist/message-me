@@ -1,10 +1,9 @@
 <h4 class="ui center aligned medium icon header">
     <i class="circular orange user icon"></i> Users
 </h4>
-
+<% @users.each do |user| %>
 <div id="users" class="ui cards centered align">
-  <% @users.each do |user| %>
-    <% if !current_user.friends_with?(user)%>
+    <% if !current_user.friends_with?(user) && current_user != user %>
       <div class="ui card">
         <div class="content">
           <%= link_to user.username, user_path(user), class: "header" %> 
@@ -16,7 +15,6 @@
           </div>
         </div>
     <% end %>
+  </div>  
 </div>
-  <% end %>
-</div>
-
+<% end %>
