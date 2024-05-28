@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy add_friend]
+  before_action :set_user, only: %i[ show edit update destroy add_friend ]
   before_action :require_user, only: %i[edit update index show friends]
   before_action :require_same_user, only: %i[edit update destroy]
 
@@ -63,14 +63,21 @@ class UsersController < ApplicationController
   # UPDATE /users/1 invite
   def add_friend
     respond_to do |format|
+      debugger
       if current_user.send_invitation(@user)
         format.html { redirect_to user_url(@user), notice: "A friend request has been sent."}
-      end
+      else 
+        format.html { redirect_to root_url, notice: "There was an error handling your request.", status: 400 }
+      end 
     end
   end
 
   def friends
     @user = current_user
+  end
+
+  def requests
+    @requests = current_user.invitations
   end
 
 

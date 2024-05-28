@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post 'message', to: 'messages#create'
   get 'friends', to: 'users#friends'
   post 'add-friends(/:id)', to: "users#add_friend", as: :add_friend
+  get 'requests', to: "users#requests"
 end
