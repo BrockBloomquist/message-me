@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :require_user, only: %i[edit update index show friends add_friend]
+  before_action :set_user, only: %i[ show edit update destroy add_friend]
+  before_action :require_user, only: %i[edit update index show friends]
   before_action :require_same_user, only: %i[edit update destroy]
 
   # GET /users or /users.json
@@ -55,18 +55,24 @@ class UsersController < ApplicationController
     @user.destroy!
 
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to root_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
+  # UPDATE /users/1 invite
   def add_friend
-    current_user.send_invitation(@user)
+    respond_to do |format|
+      if current_user.send_invitation(@user)
+        format.html { redirect_to user_url(@user), notice: "A friend request has been sent."}
+      end
+    end
   end
 
   def friends
     @user = current_user
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
