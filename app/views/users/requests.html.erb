@@ -8,19 +8,19 @@
             <div class="card">
                 <div class="content">
                     <div class="header">
-                        <%= r.user_id %>
+                        <%= link_to r.user.username, user_path(r.user) %>
                     </div>
                     <div class="meta">
-                        Friends of Veronika
+                        <%= r.user.first_name.capitalize + " " + r.user.last_name.capitalize %>
                     </div>
                     <div class="description">
-                        <%= r.user.username %> requested permission to view your contact details
+                        <%= r.user.username %> requested to be your friend!
                     </div>
                 </div>
                 <div class="extra content">
                     <div class="ui two buttons">
-                        <div class="ui inverted green button">Approve</div>
-                        <div class="ui inverted red button">Decline</div>
+                        <div class="ui inverted green button">Accept</div>
+                        <div class="ui inverted red button">Reject</div>
                     </div>
                 </div>
             </div>

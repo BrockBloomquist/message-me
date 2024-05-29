@@ -63,7 +63,6 @@ class UsersController < ApplicationController
   # UPDATE /users/1 invite
   def add_friend
     respond_to do |format|
-      debugger
       if current_user.send_invitation(@user)
         format.html { redirect_to user_url(@user), notice: "A friend request has been sent."}
       else 
@@ -74,6 +73,10 @@ class UsersController < ApplicationController
 
   def friends
     @user = current_user
+  end
+
+  def accept_request
+    
   end
 
   def requests
