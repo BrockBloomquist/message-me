@@ -3,25 +3,29 @@
 </h4>
 
 <div class="ui cards centered align">
-    <% @requests.each do |r| %>
-        <div class="card">
-            <div class="content">
-                <div class="header">
-                    <%= current_user.username %>
+     <% if @requests.any? %>
+        <% @requests.each do |r| %>
+            <div class="card">
+                <div class="content">
+                    <div class="header">
+                        <%= r.user_id %>
+                    </div>
+                    <div class="meta">
+                        Friends of Veronika
+                    </div>
+                    <div class="description">
+                        <%= r.user.username %> requested permission to view your contact details
+                    </div>
                 </div>
-                <div class="meta">
-                    Friends of Veronika
-                </div>
-                <div class="description">
-                    Elliot requested permission to view your contact details
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <div class="ui inverted green button">Approve</div>
+                        <div class="ui inverted red button">Decline</div>
+                    </div>
                 </div>
             </div>
-            <div class="extra content">
-                <div class="ui two buttons">
-                    <div class="ui inverted green button">Approve</div>
-                    <div class="ui inverted red button">Decline</div>
-                </div>
-            </div>
-        </div>
+        <% end %>
+    <% else %>
+        <h1 class="ui center aligned medium header">You currently have no incoming friend requests.</h1>
     <% end %>
 </div>

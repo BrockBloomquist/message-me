@@ -77,7 +77,7 @@ class UsersController < ApplicationController
   end
 
   def requests
-    @requests = current_user.invitations
+    @requests = Invitation.all.select { |r| r.friend_id == current_user.id }
   end
 
 
