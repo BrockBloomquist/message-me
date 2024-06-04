@@ -63,10 +63,8 @@ class UsersController < ApplicationController
   # UPDATE /users/1 invite
   def add_friend
     respond_to do |format|
-      if Invitation.reacted?(current_user.id, @user.id)
-        current_user.send_invitation(@user)
+      if current_user.send_invitation(@user)
         format.html { redirect_to user_url(@user), notice: "A friend request has been sent."}
-        format.json { render :show, status: 200, location: @user }
       else 
         format.html { redirect_to root_url, notice: "There was an error handling your request.", status: 400 }
       end 
@@ -77,7 +75,11 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def accept_request(user)
+  def accept_request(inv)
+    
+  end
+
+  def reject_request(inv)
     
   end
 

@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get 'friends', to: 'users#friends'
   post 'add-friends(/:id)', to: "users#add_friend", as: :add_friend
   get 'requests', to: "users#requests"
+  post "accept-request", to: "users#accept_request", as: :accept_friend
+  delete "accept-request", to: "users#reject_request", as: :reject_friend
 end
