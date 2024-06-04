@@ -31,7 +31,4 @@ class User < ApplicationRecord
       invitations.create(friend_id: user.id)
     end
     
-    def req_exists?(user)
-      
-    end
 end
