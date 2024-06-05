@@ -19,7 +19,7 @@
                 </div>
                 <div class="extra content">
                     <div class="ui two buttons">
-                        <%= button_to "Accept", accept_friend_path, class: "ui inverted green button", method: :post %>
+                        <%= button_to "Accept", accept_friend_path, class: "ui inverted green button", method: :post, params: {user_id: r.user_id, friend_id: r.friend_id} %>
                         <%= button_to "Reject", reject_friend_path, class: "ui inverted red button", method: :delete %>
                     </div>
                 </div>

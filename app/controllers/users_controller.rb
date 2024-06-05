@@ -75,8 +75,11 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def accept_request(inv)
-    
+  def accept_request
+    inv = Invitation.where(user_id: params[:user_id], friend_id: params[:friend_id], confirmed: false)
+    if inv.update(confirmed: true)
+      redirect_to friends_path
+    end
   end
 
   def reject_request(inv)

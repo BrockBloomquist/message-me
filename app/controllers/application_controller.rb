@@ -19,8 +19,4 @@ class ApplicationController < ActionController::Base
     def turbo_stream?
       formats.any?(:turbo_stream)
     end
-
-    def invitation_exists?(id1, id2)
-      
-    end
 end
