@@ -13,6 +13,9 @@ This project was developed in order to demonstrate the ability to manipulate the
 
 * JQuery
 
+### Hotwire's Turbo
+Hotwire's Turbo package has become a standard in Ruby on Rails 7 allowing for real time DOM manipulation through Turbo frames and streams which allow you to stream to a specific frame another frame. In this project users are able to edit their profiles on their profile page as well as admin users can edit other users on their respective profile pages. This allows for minimal page reloading. Additionally, the main feature on this project is a chatroom where users can message one another and see the message board update in real time. With Turbo Broadcasts this project utilizes a Websocket channel to listen to updates to the messages index and updates the message board as needed with some help from JQuery. 
+
 ## CI/CD
 It is important to note that this project's Github workflows/actions were implemented to catch, not fix formatting and security vulnerabilites in packages that are utilizing in this project. All fixes must be done in a PR/Commit on their own with the command line.
 
