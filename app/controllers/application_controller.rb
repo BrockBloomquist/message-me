@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :logged_in?, :turbo_stream?
+    helper_method :current_user, :logged_in?, :turbo_stream?, :friends_with_all?
     
     def current_user
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -18,5 +18,14 @@ class ApplicationController < ActionController::Base
 
     def turbo_stream?
       formats.any?(:turbo_stream)
+    end
+
+    def friends_with_all?
+      current_user.invitations.each do |r|
+        if current_user.friends_with?(User.find(r.friend_id))
+          return false
+        end
+      end
+      return true
     end
 end

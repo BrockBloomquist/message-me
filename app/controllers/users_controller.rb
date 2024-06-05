@@ -82,8 +82,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def reject_request(inv)
-    
+  def reject_request
+    inv_id = Invitation.where(user_id: params[:user_id], friend_id: params[:friend_id]).first.id
+    Invitation.destroy_by(id: inv_id)
+    redirect_to friends_path
   end
 
 

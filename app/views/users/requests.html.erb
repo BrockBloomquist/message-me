@@ -3,8 +3,8 @@
 </h4>
 
 <div class="ui cards centered align">
-     <% if @requests.any? %>
-        <% @requests.each do |r| %>
+    <% @requests.each do |r| %>
+        <% if !current_user.friends_with?(r.user) %>
             <div class="card">
                 <div class="content">
                     <div class="header">
@@ -20,12 +20,10 @@
                 <div class="extra content">
                     <div class="ui two buttons">
                         <%= button_to "Accept", accept_friend_path, class: "ui inverted green button", method: :post, params: {user_id: r.user_id, friend_id: r.friend_id} %>
-                        <%= button_to "Reject", reject_friend_path, class: "ui inverted red button", method: :delete %>
+                        <%= button_to "Reject", reject_friend_path, class: "ui inverted red button", method: :delete, params: {user_id: r.user_id, friend_id: r.friend_id} %>
                     </div>
                 </div>
             </div>
         <% end %>
-    <% else %>
-        <h1 class="ui center aligned medium header">You currently have no incoming friend requests.</h1>
     <% end %>
 </div>

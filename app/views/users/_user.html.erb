@@ -24,8 +24,10 @@
             <% if logged_in? %>
             <div class="ui center aligned">
               <% if current_user != @user && !current_user.friends_with?(@user) %>
-              <% css_class = Invitation.reacted?(current_user.id, @user.id) ? "ui inverted green button disabled" : "ui inverted green button" %>
+                <% css_class = Invitation.reacted?(current_user.id, @user.id) ? "ui inverted green button disabled" : "ui inverted green button" %>
                 <%= button_to "Add as a friend", add_friend_path(@user), class: "#{css_class}", method: :post %>
+              <% else %>
+                <%# <%= button_to "Remove friend", reject_friend_path(@user), class: "ui inverted red button", method: :delete, params: {user_id: r.user_id, friend_id: r.friend_id} %> 
               <% end %>
               <% if current_user == @user || current_user.admin? %>
                 <%= turbo_frame_tag "edit_user_account_frame" do %>
