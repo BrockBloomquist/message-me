@@ -1,24 +1,23 @@
 <h1 class="ui center aligned medium icon header">
     <i class="circular orange user icon"></i> Friends
 </h1>
-
-<div class="ui cards centered align">
-    <% if @user.friends.any? %>
-        <% @user.friends.each do |friend| %>
-            <div class="card">
-                <div class="content">
-                    <%= link_to friend.username, user_path(friend), class: "header" %> 
-                    <div class="meta">
-                        <span class="date">Joined <%= time_ago_in_words(friend.created_at) %> ago</span>
-                    </div>
-                    <div class="description">
-                        <%= friend.bio %>
+<% if @user.friends.any? %>
+    <div class="ui cards centered align">
+            <% @user.friends.each do |friend| %>
+                <div class="card">
+                    <div class="content">
+                        <%= link_to friend.username, user_path(friend), class: "header" %> 
+                        <div class="meta">
+                            <span class="date">Joined <%= time_ago_in_words(friend.created_at) %> ago</span>
+                        </div>
+                        <div class="description">
+                            <%= friend.bio %>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% end %>
-    <% else %>
-        <h1 class="ui center aligned header">No friends yet!</h1>
-    <% end %>
+            <% end %>
+        </div>
     </div>
-</div>
+<% else %>
+    <h1 class="ui center aligned header">No friends yet!</h1>
+<% end %>

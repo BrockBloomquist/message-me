@@ -23,6 +23,14 @@ class User < ApplicationRecord
       User.where(id: ids)
     end
 
+    def n_friends
+      friends_i_sent_invitation = Invitation.where(user_id: id, confirmed: false).pluck(:friend_id)
+      friends_i_got_invitation = Invitation.where(friend_id: id, confirmed: false).pluck(:user_id)
+      
+      ids = friends_i_got_invitation + friends_i_sent_invitation
+      User.where(id: ids)
+    end
+
     def friends_with?(user)
       Invitation.confirmed_record?(id, user.id)
     end

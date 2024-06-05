@@ -62,12 +62,10 @@ class UsersController < ApplicationController
 
   # UPDATE /users/1 invite
   def add_friend
-    respond_to do |format|
-      if current_user.send_invitation(@user)
-        format.html { redirect_to user_url(@user), notice: "A friend request has been sent."}
-      else 
-        format.html { redirect_to root_url, notice: "There was an error handling your request.", status: 400 }
-      end 
+    if current_user.send_invitation(@user)
+      redirect_to user_url(@user), notice: "A friend request has been sent."
+    else 
+      redirect_to root_url, notice: "There was an error handling your request.", status: 400 
     end
   end
 
@@ -78,14 +76,14 @@ class UsersController < ApplicationController
   def accept_request
     inv = Invitation.where(user_id: params[:user_id], friend_id: params[:friend_id], confirmed: false)
     if inv.update(confirmed: true)
-      redirect_to friends_path
+      redirect_to friends_path, notice: "You have successfully #{User.find(params[:friend_id]).username} added as a friend!"
     end
   end
 
   def reject_request
     inv_id = Invitation.where(user_id: params[:user_id], friend_id: params[:friend_id]).first.id
     Invitation.destroy_by(id: inv_id)
-    redirect_to friends_path
+    redirect_to friends_path, alert: "You have successfully removed #{User.find(params[:friend_id]).username} as a friend!"
   end
 
 
