@@ -1,9 +1,9 @@
-class SessionsController < ApplicationController
-  before_action :logged_in_redirect, only: [:new, :create]
+# frozen_string_literal: true
 
-  def new
-    
-  end
+class SessionsController < ApplicationController
+  before_action :logged_in_redirect, only: %i[new create]
+
+  def new; end
 
   def create
     user = User.find_by(username: params[:session][:username])
@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:notice] = 'Logged in successfully'
       redirect_to user
-    else 
-      flash.now[:alert] = "There was something wrong with your login details."
+    else
+      flash.now[:alert] = 'There was something wrong with your login details.'
       render :new, status: 401
     end
   end
@@ -26,9 +26,9 @@ class SessionsController < ApplicationController
   private
 
   def logged_in_redirect
-    if logged_in?
-      flash[:alert] = "You are already logged in"
-      redirect_to root_path
-    end
+    return unless logged_in?
+
+    flash[:alert] = 'You are already logged in'
+    redirect_to root_path
   end
 end
