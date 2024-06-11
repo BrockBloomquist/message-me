@@ -27,4 +27,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get root_url
     assert_response 302
   end
+
+  test 'User signs in as themself and is redirected' do
+    sign_in_as(@admin_user)
+    assert_redirected_to user_url(User.last)
+  end
+
+  test 'User cannot have the same username as others' do
+    sign_in_as(@admin_user)
+    user = User.create(username: 'testuser', password: 'password', email: 'test@whatever.com', first_name: 'test', last_name: 'test', bio: 'This is a test', admin: true)
+    assert_not user.save
+  end
 end
